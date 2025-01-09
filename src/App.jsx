@@ -1,7 +1,7 @@
-import "./index.css";
+import Card from "./components/Card/Card";
 
 const App = () => {
-  return <div className="font-bold bg-darkBlue h-screen">App</div>;
+  return <Card />;
 };
 
 export default App;
