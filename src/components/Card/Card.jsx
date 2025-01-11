@@ -1,4 +1,4 @@
-const Card = () => {
+const Card = ({ icon }) => {
   return (
     <div
       className="
@@ -12,7 +12,7 @@ const Card = () => {
         transition
       "
     >
-      CARD
+      {icon}
     </div>
   );
 };
