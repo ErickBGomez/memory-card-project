@@ -1,8 +1,16 @@
-const Card = ({ icon }) => {
-  const handleClick = () => {
-    console.log(icon);
-  };
+import observable from "../../patterns/observable";
 
+const handleClick = (icon) => {
+  observable.notify(icon);
+};
+
+const showIcon = (icon) => {
+  console.log(icon);
+};
+
+observable.subscribe(showIcon);
+
+const Card = ({ icon }) => {
   return (
     <div
       className="
@@ -15,7 +23,7 @@ const Card = ({ icon }) => {
         hover:-translate-y-2
         transition
       "
-      onClick={handleClick}
+      onClick={() => handleClick(icon)}
     >
       {icon}
     </div>
