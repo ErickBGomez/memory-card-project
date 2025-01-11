@@ -1,6 +1,17 @@
 const Card = () => {
   return (
-    <div className="w-20 h-28 bg-black border-4 border-solid border-white rounded-lg text-white flex items-center justify-center cursor-pointer hover:scale-110 transition">
+    <div
+      className="
+        card
+        flex items-center justify-center
+        w-20 h-28
+      text-white
+      bg-black border-4 border-solid border-white rounded-lg
+        cursor-pointer
+        hover:-translate-y-2
+        transition
+      "
+    >
       CARD
     </div>
   );
