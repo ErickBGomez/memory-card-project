@@ -1,7 +1,7 @@
-import Card from "./components/Card/Card";
+import Board from "./components/Board/Board";
 
 const App = () => {
-  return <Card />;
+  return <Board />;
 };
 
 export default App;
