@@ -1,4 +1,8 @@
 const Card = ({ icon }) => {
+  const handleClick = () => {
+    console.log(icon);
+  };
+
   return (
     <div
       className="
@@ -11,6 +15,7 @@ const Card = ({ icon }) => {
         hover:-translate-y-2
         transition
       "
+      onClick={handleClick}
     >
       {icon}
     </div>
