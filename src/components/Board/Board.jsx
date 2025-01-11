@@ -1,6 +1,6 @@
 import Card from "../Card/Card";
 
-const Board = ({ difficulty = 0 }) => {
+const Board = ({ difficulty = 1 }) => {
   if (difficulty < 0 || difficulty > 2) return null;
 
   const emojis = ["🚀", "🏠", "🏢", "🏥", "🏦", "🏫", "🏭", "🏰", "💻", "📱"];
@@ -8,9 +8,11 @@ const Board = ({ difficulty = 0 }) => {
 
   return (
     <div
-      className="
-    board flex items-center gap-4
-    "
+      // Apply max-w-96 class only when difficulty is 1 (3x2 board)
+      className={`
+      board flex items-center justify-center gap-4 flex-wrap
+      ${difficulty === 1 ? "max-w-80" : ""}
+      `}
     >
       {cards}
     </div>
