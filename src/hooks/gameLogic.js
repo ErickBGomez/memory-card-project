@@ -11,15 +11,20 @@ class GameLogic {
     return { test: "test" };
   }
 
+  // Observer pattern
   #notify() {
     this.#observers.forEach((observer) => observer(this.#state));
   }
 
   subscribe(callback) {
-    this.observers.push(callback);
+    this.#observers.push(callback);
     callback(this.#state);
+  }
 
-    return () => this.#observers.filter((observer) => observer !== callback);
+  unsubscribe(callback) {
+    this.#observers = this.#observers.filter(
+      (observer) => observer !== callback
+    );
   }
 
   // Actions
