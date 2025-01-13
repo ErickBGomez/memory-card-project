@@ -1,16 +1,12 @@
-import observable from "../../patterns/observable";
-
-const handleClick = (icon) => {
-  observable.notify(icon);
-};
-
-const showIcon = (icon) => {
-  console.log(icon);
-};
-
-observable.subscribe(showIcon);
+import useGame from "../../hooks/useGame";
 
 const Card = ({ icon }) => {
+  const { clickCard } = useGame();
+
+  const handleClick = (icon) => {
+    clickCard(icon);
+  };
+
   return (
     <div
       className="
