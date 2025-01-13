@@ -1,11 +1,16 @@
+import useGame from "../../hooks/useGame";
 import Card from "../Card/Card";
 
 const Board = ({ difficulty = 2 }) => {
+  const { clickCard } = useGame();
+
   if (difficulty < 0 || difficulty > 2) return null;
 
   const emojis = ["🚀", "🏠", "🏢", "🏥", "🏦", "🏫", "🏭", "🏰", "💻", "📱"];
   const cards = emojis
-    .map((emoji, index) => <Card key={index} icon={emoji} />)
+    .map((emoji, index) => (
+      <Card key={index} icon={emoji} onClick={() => clickCard(emoji)} />
+    ))
     .slice(0, 4 + difficulty * 2);
 
   return (
