@@ -6,12 +6,11 @@ class GameLogic {
 
   constructor(difficulty = 0) {
     this.#state = this.#initialize(difficulty);
-    console.log(this.#state);
   }
 
   #initialize(difficulty) {
-    console.log("game initialized");
-    return { cards: [emojis.slice(0, 4 + difficulty * 2)] };
+    // console.log("game initialized");
+    return { cards: emojis.slice(0, 4 + difficulty * 2) };
   }
 
   // Observer pattern
@@ -36,6 +35,10 @@ class GameLogic {
     console.log(icon);
 
     this.#notify();
+  }
+
+  getCards() {
+    return this.#state.cards;
   }
 }
 

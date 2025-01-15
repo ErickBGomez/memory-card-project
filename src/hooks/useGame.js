@@ -14,6 +14,7 @@ const useGame = () => {
   return {
     gameState,
     clickCard: (icon) => gameLogic.clickCard(icon),
+    getCards: () => gameLogic.getCards(),
   };
 };
 
