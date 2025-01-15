@@ -1,14 +1,16 @@
+const emojis = ["🚀", "🏠", "🏢", "🏥", "🏦", "🏫", "🏭", "🏰", "💻", "📱"];
+
 class GameLogic {
   #state;
   #observers = [];
 
-  constructor() {
+  constructor(difficulty = 0) {
     this.#initialize();
   }
 
   #initialize() {
     console.log("game initialized");
-    return { test: "test" };
+    return { cards: [emojis.slice(0)] };
   }
 
   // Observer pattern

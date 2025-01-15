@@ -6,7 +6,6 @@ const Board = ({ difficulty = 2 }) => {
 
   if (difficulty < 0 || difficulty > 2) return null;
 
-  const emojis = ["🚀", "🏠", "🏢", "🏥", "🏦", "🏫", "🏭", "🏰", "💻", "📱"];
   const cards = emojis
     .map((emoji, index) => (
       <Card key={index} icon={emoji} onClick={() => clickCard(emoji)} />
