@@ -5,12 +5,13 @@ class GameLogic {
   #observers = [];
 
   constructor(difficulty = 0) {
-    this.#initialize();
+    this.#state = this.#initialize(difficulty);
+    console.log(this.#state);
   }
 
-  #initialize() {
+  #initialize(difficulty) {
     console.log("game initialized");
-    return { cards: [emojis.slice(0)] };
+    return { cards: [emojis.slice(0, 4 + difficulty * 2)] };
   }
 
   // Observer pattern

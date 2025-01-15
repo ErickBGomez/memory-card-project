@@ -3,6 +3,7 @@ import Card from "../Card/Card";
 
 const Board = ({ difficulty = 2 }) => {
   const { clickCard } = useGame();
+  const emojis = ["🚀", "🏠", "🏢", "🏥", "🏦", "🏫", "🏭", "🏰", "💻", "📱"];
 
   if (difficulty < 0 || difficulty > 2) return null;
 
