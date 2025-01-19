@@ -13,7 +13,7 @@ const useGame = () => {
 
   return {
     gameState,
-    clickCard: (icon) => gameLogic.clickCard(icon),
+    clickCard: (card) => gameLogic.clickCard(card),
     getCards: () => gameLogic.getCards(),
   };
 };

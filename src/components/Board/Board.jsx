@@ -6,8 +6,8 @@ const Board = ({ difficulty = 2 }) => {
 
   if (difficulty < 0 || difficulty > 2) return null;
 
-  const cards = getCards().map((icon, index) => (
-    <Card key={index} icon={icon} onClick={() => clickCard(icon)} />
+  const cards = getCards().map((card, index) => (
+    <Card key={index} icon={card.icon} onClick={() => clickCard(card)} />
   ));
 
   return (

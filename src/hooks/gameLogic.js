@@ -1,4 +1,15 @@
-const emojis = ["🚀", "🏠", "🏢", "🏥", "🏦", "🏫", "🏭", "🏰", "💻", "📱"];
+const cardsdb = [
+  { id: 1, icon: "🚀" },
+  { id: 2, icon: "🏠" },
+  { id: 3, icon: "🏢" },
+  { id: 4, icon: "🏥" },
+  { id: 5, icon: "🏦" },
+  { id: 6, icon: "🏫" },
+  { id: 7, icon: "🏭" },
+  { id: 8, icon: "🏰" },
+  { id: 9, icon: "💻" },
+  { id: 10, icon: "📱" },
+];
 
 class GameLogic {
   #state;
@@ -10,7 +21,9 @@ class GameLogic {
 
   #initialize(difficulty) {
     // console.log("game initialized");
-    return { cards: emojis.slice(0, 4 + difficulty * 2) };
+    const cards = cardsdb.map((card) => ({ ...card, clicked: false }));
+
+    return { cards: cards.slice(0, 4 + difficulty * 2) };
   }
 
   // Observer pattern
@@ -30,9 +43,12 @@ class GameLogic {
   }
 
   // Actions
-  clickCard(icon) {
-    this.#state = { ...this.#state, icon };
-    console.log(icon);
+  // TODO: Not working
+  clickCard(card) {
+    // this.#state = { ...this.#state, icon };
+    this.#state.cards.map((c) =>
+      c.id === card.id ? { ...c, clicked: true } : c
+    );
 
     this.#notify();
   }
