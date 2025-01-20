@@ -46,9 +46,10 @@ class GameLogic {
   // TODO: Not working
   clickCard(card) {
     // this.#state = { ...this.#state, icon };
-    this.#state.cards.map((c) =>
+    this.#state.cards = this.#state.cards.map((c) =>
       c.id === card.id ? { ...c, clicked: true } : c
     );
+    console.log(this.#state.cards);
 
     this.#notify();
   }
