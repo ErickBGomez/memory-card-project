@@ -28,7 +28,7 @@ class GameLogic {
 
   // Observer pattern
   #notify() {
-    this.#observers.forEach((observer) => observer(this.#state));
+    this.#observers.forEach((callback) => callback(this.#state));
   }
 
   subscribe(callback) {
@@ -45,11 +45,12 @@ class GameLogic {
   // Actions
   // TODO: Not working
   clickCard(card) {
-    // this.#state = { ...this.#state, icon };
+    if (card.clicked) console.log("Card already clicked");
+
     this.#state.cards = this.#state.cards.map((c) =>
       c.id === card.id ? { ...c, clicked: true } : c
     );
-    console.log(this.#state.cards);
+    // console.log(this.#state.cards);
 
     this.#notify();
   }
