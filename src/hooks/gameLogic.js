@@ -46,6 +46,10 @@ class GameLogic {
     const newState = { ...this.#state };
     const card = newState.cards.find((card) => card.id === c.id);
 
+    if (newState.isGameOver) {
+      return;
+    }
+
     if (!card) {
       console.log("Card not found");
       return;
