@@ -26,7 +26,6 @@ class GameLogic {
     return { cards: cards.slice(0, 4 + difficulty * 2), isGameOver: false };
   }
 
-  // Observer pattern
   #notify() {
     this.#observers.forEach((callback) => callback(this.#state));
   }
@@ -44,9 +43,9 @@ class GameLogic {
 
   // Actions
   clickCard(c) {
-    const card = this.#state.cards.find((card) => card.id === c.id);
+    const newState = { ...this.#state };
+    const card = newState.cards.find((card) => card.id === c.id);
 
-    // Return if card is not found or already clicked
     if (!card) {
       console.log("Card not found");
       return;
@@ -54,14 +53,14 @@ class GameLogic {
 
     if (card.clicked) {
       console.log(`Game over! Card (${card.icon}) already clicked`);
-      this.#state.isGameOver = true;
+      newState.isGameOver = true;
     } else {
-      // Update card status when clicked once and notify event
-      this.#state.cards = this.#state.cards.map((c) =>
+      newState.cards = newState.cards.map((c) =>
         c.id === card.id ? { ...c, clicked: true } : c
       );
     }
 
+    this.#state = newState;
     this.#notify();
   }
 }
