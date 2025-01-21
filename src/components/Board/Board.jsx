@@ -2,15 +2,13 @@ import useGame from "../../hooks/useGame";
 import Card from "../Card/Card";
 
 const Board = ({ difficulty = 2 }) => {
-  const { clickCard, getCards, gameState } = useGame();
+  const { clickCard, gameState } = useGame();
 
   if (difficulty < 0 || difficulty > 2) return null;
 
   const cards = gameState?.cards.map((card, index) => (
     <Card key={index} icon={card.icon} onClick={() => clickCard(card)} />
   ));
-
-  console.log("Re rendered");
 
   return (
     <div

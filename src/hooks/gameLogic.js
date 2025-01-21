@@ -44,8 +44,18 @@ class GameLogic {
 
   // Actions
   // TODO: Not working
-  clickCard(card) {
-    if (card.clicked) console.log("Card already clicked");
+  clickCard(c) {
+    const card = this.#state.cards.find((card) => card.id === c.id);
+
+    if (!card) {
+      console.log("Card not found");
+      return;
+    }
+
+    if (card.clicked) {
+      console.log("Card already clicked");
+      return;
+    }
 
     this.#state.cards = this.#state.cards.map((c) =>
       c.id === card.id ? { ...c, clicked: true } : c
@@ -53,10 +63,6 @@ class GameLogic {
     // console.log(this.#state.cards);
 
     this.#notify();
-  }
-
-  getCards() {
-    return this.#state.cards;
   }
 }
 
