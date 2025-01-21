@@ -1,3 +1,5 @@
+// TODO: Check win
+
 const cardsdb = [
   { id: 1, icon: "🚀" },
   { id: 2, icon: "🏠" },
