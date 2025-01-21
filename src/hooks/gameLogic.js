@@ -43,10 +43,10 @@ class GameLogic {
   }
 
   // Actions
-  // TODO: Not working
   clickCard(c) {
     const card = this.#state.cards.find((card) => card.id === c.id);
 
+    // Return if card is not found or already clicked
     if (!card) {
       console.log("Card not found");
       return;
@@ -57,10 +57,10 @@ class GameLogic {
       return;
     }
 
+    // Update card status when clicked once and notify event
     this.#state.cards = this.#state.cards.map((c) =>
       c.id === card.id ? { ...c, clicked: true } : c
     );
-    // console.log(this.#state.cards);
 
     this.#notify();
   }
