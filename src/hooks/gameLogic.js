@@ -20,10 +20,10 @@ class GameLogic {
   }
 
   #initialize(difficulty) {
-    // console.log("game initialized");
+    console.log("game initialized");
     const cards = cardsdb.map((card) => ({ ...card, clicked: false }));
 
-    return { cards: cards.slice(0, 4 + difficulty * 2) };
+    return { cards: cards.slice(0, 4 + difficulty * 2), isGameOver: false };
   }
 
   // Observer pattern
@@ -53,14 +53,14 @@ class GameLogic {
     }
 
     if (card.clicked) {
-      console.log("Card already clicked");
-      return;
+      console.log(`Game over! Card (${card.icon}) already clicked`);
+      this.#state.isGameOver = true;
+    } else {
+      // Update card status when clicked once and notify event
+      this.#state.cards = this.#state.cards.map((c) =>
+        c.id === card.id ? { ...c, clicked: true } : c
+      );
     }
-
-    // Update card status when clicked once and notify event
-    this.#state.cards = this.#state.cards.map((c) =>
-      c.id === card.id ? { ...c, clicked: true } : c
-    );
 
     this.#notify();
   }

@@ -19,6 +19,9 @@ const Board = ({ difficulty = 2 }) => {
       `}
     >
       {cards}
+      {gameState?.isGameOver && (
+        <div className="text-white text-2xl">Game Over!</div>
+      )}
     </div>
   );
 };
