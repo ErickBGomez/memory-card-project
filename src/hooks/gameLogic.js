@@ -58,6 +58,9 @@ class GameLogic {
       newState.cards = newState.cards.map((c) =>
         c.id === card.id ? { ...c, clicked: true } : c
       );
+
+      // Shuffle cards for each click
+      newState.cards.sort(() => Math.random() - 0.5);
     }
 
     this.#state = newState;
