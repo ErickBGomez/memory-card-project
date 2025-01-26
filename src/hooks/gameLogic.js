@@ -25,7 +25,11 @@ class GameLogic {
     console.log("game initialized");
     const cards = cardsdb.map((card) => ({ ...card, clicked: false }));
 
-    return { cards: cards.slice(0, 4 + difficulty * 2), isGameOver: false };
+    return {
+      difficulty,
+      cards: cards.slice(0, 4 + difficulty * 2),
+      isGameOver: false,
+    };
   }
 
   #notify() {
