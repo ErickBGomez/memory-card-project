@@ -1,13 +1,13 @@
 import Board from "../Board/Board";
 import Score from "../Score/Score";
 
-const GameGUI = () => {
+const Game = () => {
   return (
-    <div className="game-gui">
+    <div className="game">
       <Score />
       <Board difficulty={2} />
     </div>
   );
 };
 
-export default GameGUI;
+export default Game;

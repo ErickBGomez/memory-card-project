@@ -1,7 +1,7 @@
-import GameGUI from "./components/GameGUI/GameGUI";
+import Game from "./components/Game/Game";
 
 const App = () => {
-  return <GameGUI />;
+  return <Game />;
 };
 
 export default App;
