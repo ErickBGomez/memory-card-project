@@ -1,12 +1,9 @@
-import useGame from "../../hooks/useGame";
 import Card from "../Card/Card";
 
-const Board = ({ difficulty = 2 }) => {
-  const { clickCard, gameState } = useGame();
+const Board = ({ gameState, clickCard }) => {
+  const { difficulty, cards, isGameOver } = gameState || {};
 
-  if (difficulty < 0 || difficulty > 2) return null;
-
-  const cards = gameState?.cards.map((card) => (
+  const mappedCards = cards?.map((card) => (
     <Card key={card.id} icon={card.icon} onClick={() => clickCard(card)} />
   ));
 
@@ -18,10 +15,8 @@ const Board = ({ difficulty = 2 }) => {
       ${difficulty === 1 ? "max-w-80" : "max-w-96"}
       `}
     >
-      {cards}
-      {gameState?.isGameOver && (
-        <div className="text-white text-2xl">Game Over!</div>
-      )}
+      {mappedCards}
+      {isGameOver && <div className="text-white text-2xl">Game Over!</div>}
     </div>
   );
 };
