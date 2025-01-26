@@ -5,11 +5,9 @@ import Score from "../Score/Score";
 const Game = () => {
   const { gameState, clickCard } = useGame();
 
-  console.log(gameState);
-
   return (
     <div className="game">
-      <Score />
+      <Score gameState={gameState} />
       <Board gameState={gameState} clickCard={clickCard} />
     </div>
   );
