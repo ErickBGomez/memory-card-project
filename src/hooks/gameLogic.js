@@ -28,6 +28,9 @@ class GameLogic {
     return {
       difficulty,
       cards: cards.slice(0, 4 + difficulty * 2),
+      phase: 0,
+      score: 0,
+      highScore: 0,
       isGameOver: false,
     };
   }
@@ -52,6 +55,7 @@ class GameLogic {
     const newState = { ...this.#state };
     const card = newState.cards.find((card) => card.id === c.id);
 
+    // Avoid clicking cards when game is over
     if (newState.isGameOver) {
       return;
     }
@@ -63,11 +67,17 @@ class GameLogic {
 
     if (card.clicked) {
       console.log(`Game over! Card (${card.icon}) already clicked`);
+
+      if (newState.score > newState.highScore)
+        newState.highScore = newState.score;
+
       newState.isGameOver = true;
     } else {
       newState.cards = newState.cards.map((c) =>
         c.id === card.id ? { ...c, clicked: true } : c
       );
+
+      newState.score++;
 
       // Shuffle cards for each click
       newState.cards.sort(() => Math.random() - 0.5);
