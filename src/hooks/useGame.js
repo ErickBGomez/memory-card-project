@@ -2,8 +2,8 @@ import { useState } from "react";
 import GameLogic from "./gameLogic";
 import { useEffect } from "react";
 
-const useGame = () => {
-  const [gameLogic] = useState(() => new GameLogic(2));
+const useGame = (difficulty = 0) => {
+  const [gameLogic] = useState(() => new GameLogic(difficulty));
   const [gameState, setGameState] = useState(null);
 
   useEffect(() => {
