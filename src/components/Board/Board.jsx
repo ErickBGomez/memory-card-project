@@ -1,7 +1,7 @@
 import Card from "../Card/Card";
 
 const Board = ({ gameState, clickCard }) => {
-  const { difficulty, cards, isGameOver } = gameState || {};
+  const { difficulty, cards } = gameState || {};
 
   const mappedCards = cards?.map((card) => (
     <Card key={card.id} icon={card.icon} onClick={() => clickCard(card)} />
@@ -16,7 +16,6 @@ const Board = ({ gameState, clickCard }) => {
       `}
     >
       {mappedCards}
-      {isGameOver && <div className="text-white text-2xl">Game Over!</div>}
     </div>
   );
 };
