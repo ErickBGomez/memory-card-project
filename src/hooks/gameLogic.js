@@ -31,9 +31,9 @@ class GameLogic {
     return {
       difficulty,
       cards: cards.slice(0, 4 + difficulty * 2),
-      phase: 0,
+      phase: 1,
       score: 0,
-      highScore: 0,
+      highScore: this.#state?.highScore || 0,
       isGameOver: false,
     };
   }
