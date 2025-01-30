@@ -82,6 +82,17 @@ class GameLogic {
 
       newState.score++;
 
+      if (newState.cards.every((card) => card.clicked)) {
+        newState.phase++;
+
+        console.log("New phase reached!");
+
+        newState.cards = newState.cards.map((card) => ({
+          ...card,
+          clicked: false,
+        }));
+      }
+
       // Shuffle cards for each click
       newState.cards.sort(() => Math.random() - 0.5);
     }
