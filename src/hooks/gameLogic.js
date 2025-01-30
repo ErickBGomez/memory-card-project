@@ -17,8 +17,11 @@ class GameLogic {
   #state;
   #observers = [];
 
-  constructor(difficulty = 0) {
+  constructor() {}
+
+  startNewGame(difficulty) {
     this.#state = this.#initialize(difficulty);
+    this.#notify();
   }
 
   #initialize(difficulty) {

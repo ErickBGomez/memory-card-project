@@ -14,6 +14,7 @@ const useGame = (difficulty = 0) => {
   return {
     gameState,
     clickCard: (card) => gameLogic.clickCard(card),
+    startNewGame: (difficulty) => gameLogic.startNewGame(difficulty),
   };
 };
 
