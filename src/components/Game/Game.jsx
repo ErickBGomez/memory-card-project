@@ -10,7 +10,7 @@ const Game = () => {
 
   useEffect(() => {
     startNewGame(0);
-  }, []);
+  }, [startNewGame]);
 
   const restartGame = () => {
     startNewGame(0);

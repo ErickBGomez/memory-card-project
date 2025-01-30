@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import GameLogic from "./gameLogic";
 import { useEffect } from "react";
 
@@ -14,7 +14,11 @@ const useGame = (difficulty = 0) => {
   return {
     gameState,
     clickCard: (card) => gameLogic.clickCard(card),
-    startNewGame: (difficulty) => gameLogic.startNewGame(difficulty),
+    // Callback to avoid infinite loop
+    startNewGame: useCallback(
+      (difficulty) => gameLogic.startNewGame(difficulty),
+      [gameLogic]
+    ),
   };
 };
 
