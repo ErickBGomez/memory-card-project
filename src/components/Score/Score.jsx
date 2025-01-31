@@ -1,20 +1,25 @@
 const Score = ({ gameState }) => {
   const { score, highScore, phase } = gameState || {};
 
+  // Create score info array to avoid redundancy
+  const scoreInfo = [
+    { label: "YOUR SCORE", value: score, alignment: "items-start" },
+    { label: "PHASE", value: phase, alignment: "items-center" },
+    { label: "HIGH SCORE", value: highScore, alignment: "items-end" },
+  ];
+
   return (
-    <div className="score grid grid-cols-3 ">
-      <div className="score flex flex-col">
-        <div className="label font-bold text-xs">YOUR SCORE</div>
-        <div className="value">{score}</div>
-      </div>
-      <div className="phase flex flex-col items-center">
-        <div className="label font-bold text-xs">PHASE</div>
-        <div className="value">{phase}</div>
-      </div>
-      <div className="high-score flex flex-col items-end">
-        <div className="label font-bold text-xs">HIGH SCORE</div>
-        <div className="value">{highScore}</div>
-      </div>
+    <div className="score grid grid-cols-3">
+      {scoreInfo.map((info, index) => {
+        const { label, value, alignment } = info;
+
+        return (
+          <div className={`flex flex-col ${alignment}`} key={index}>
+            <div className="label font-bold text-xs">{label}</div>
+            <div className="value">{value}</div>
+          </div>
+        );
+      })}
     </div>
   );
 };
