@@ -23,7 +23,12 @@ const Game = () => {
       {isGameOver && (
         <div className="game-over">
           <div className="text-white text-2xl">Game Over!</div>
-          <button onClick={restartGame}>Play again</button>
+          <button className="primary" onClick={restartGame}>
+            PLAY AGAIN
+          </button>
+          <button className="secondary" onClick={restartGame}>
+            CHANGE DIFFICULTY
+          </button>
         </div>
       )}
     </div>

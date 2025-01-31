@@ -8,6 +8,14 @@
   }
 
   button {
-    @apply bg-white text-darkBlue font-bold w-full p-2 rounded-lg transition hover:bg-whiteHover active:bg-whiteActive;
+    @apply font-bold w-full border-solid border-[2px] p-2 rounded-lg transition;
+  }
+
+  button.primary {
+    @apply bg-white text-darkBlue border-white hover:bg-whiteHover active:bg-whiteActive;
+  }
+
+  button.secondary {
+    @apply bg-transparent border-white text-white hover:text-whiteHover active:text-whiteActive;
   }
 }
