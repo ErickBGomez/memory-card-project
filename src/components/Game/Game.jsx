@@ -3,7 +3,7 @@ import useGame from "../../hooks/useGame";
 import Board from "../Board/Board";
 import Score from "../Score/Score";
 
-const Game = ({ difficulty }) => {
+const Game = ({ difficulty, setDifficulty }) => {
   const { gameState, clickCard, startNewGame } = useGame(difficulty);
 
   const { isGameOver } = gameState || {};
@@ -14,6 +14,10 @@ const Game = ({ difficulty }) => {
 
   const restartGame = () => {
     startNewGame(difficulty);
+  };
+
+  const returnMainMenu = () => {
+    setDifficulty(-1);
   };
 
   return (
@@ -27,7 +31,7 @@ const Game = ({ difficulty }) => {
           <button className="primary" onClick={restartGame}>
             PLAY AGAIN
           </button>
-          <button className="secondary" onClick={restartGame}>
+          <button className="secondary" onClick={returnMainMenu}>
             RETURN MAIN MENU
           </button>
         </div>

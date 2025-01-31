@@ -13,7 +13,7 @@ const App = () => {
   return (
     <>
       {difficulty >= 0 ? (
-        <Game difficulty={difficulty} />
+        <Game difficulty={difficulty} setDifficulty={setDifficulty} />
       ) : (
         <MainMenu setDifficulty={setDifficulty} />
       )}
