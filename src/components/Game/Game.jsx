@@ -3,17 +3,17 @@ import useGame from "../../hooks/useGame";
 import Board from "../Board/Board";
 import Score from "../Score/Score";
 
-const Game = () => {
-  const { gameState, clickCard, startNewGame } = useGame();
+const Game = ({ difficulty }) => {
+  const { gameState, clickCard, startNewGame } = useGame(difficulty);
 
   const { isGameOver } = gameState || {};
 
   useEffect(() => {
-    startNewGame(0);
+    startNewGame(difficulty);
   }, [startNewGame]);
 
   const restartGame = () => {
-    startNewGame(0);
+    startNewGame(difficulty);
   };
 
   return (

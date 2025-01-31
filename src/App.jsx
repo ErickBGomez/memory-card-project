@@ -3,10 +3,16 @@ import Game from "./components/Game/Game";
 import MainMenu from "./components/MainMenu/MainMenu";
 
 const App = () => {
-  const [gameStarted, setGameStarted] = useState(false);
+  const [difficulty, setDifficulty] = useState(-1);
 
   return (
-    <>{gameStarted ? <Game /> : <MainMenu onGameStarted={setGameStarted} />}</>
+    <>
+      {difficulty >= 0 ? (
+        <Game difficulty={difficulty} />
+      ) : (
+        <MainMenu setDifficulty={setDifficulty} />
+      )}
+    </>
   );
 };
 
