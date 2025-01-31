@@ -11,6 +11,11 @@ export default {
       whiteHover: "#E8EAEC",
       whiteActive: "#82848B",
     },
+    extend: {
+      fontFamily: {
+        Archivo: ["Archivo", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };
