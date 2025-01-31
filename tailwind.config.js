@@ -8,6 +8,8 @@ export default {
       white: "#FCFCFC",
       black: "#1E2024",
       darkBlue: "#282B38",
+      whiteHover: "#E8EAEC",
+      whiteActive: "#82848B",
     },
   },
   plugins: [],
