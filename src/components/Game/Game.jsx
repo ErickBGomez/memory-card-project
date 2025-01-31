@@ -21,8 +21,8 @@ const Game = () => {
       <Score gameState={gameState} />
       <Board gameState={gameState} clickCard={clickCard} />
       {isGameOver && (
-        <div className="game-over">
-          <div className="text-white text-2xl">Game Over!</div>
+        <div className="game-over flex flex-col gap-2 mt-4">
+          <div className="text-white text-2xl text-center">GAME OVER!</div>
           <button className="primary" onClick={restartGame}>
             PLAY AGAIN
           </button>
