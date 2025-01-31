@@ -19,8 +19,9 @@ const Game = ({ difficulty }) => {
   return (
     <div className="game">
       <Score gameState={gameState} />
-      <Board gameState={gameState} clickCard={clickCard} />
-      {isGameOver && (
+      {!isGameOver ? (
+        <Board gameState={gameState} clickCard={clickCard} />
+      ) : (
         <div className="game-over flex flex-col gap-2 mt-4">
           <div className="text-white text-2xl text-center">GAME OVER!</div>
           <button className="primary" onClick={restartGame}>
