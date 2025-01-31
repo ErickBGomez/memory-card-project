@@ -10,7 +10,7 @@ const Game = ({ difficulty }) => {
 
   useEffect(() => {
     startNewGame(difficulty);
-  }, [startNewGame]);
+  }, [startNewGame, difficulty]);
 
   const restartGame = () => {
     startNewGame(difficulty);
@@ -27,7 +27,7 @@ const Game = ({ difficulty }) => {
             PLAY AGAIN
           </button>
           <button className="secondary" onClick={restartGame}>
-            CHANGE DIFFICULTY
+            RETURN MAIN MENU
           </button>
         </div>
       )}
