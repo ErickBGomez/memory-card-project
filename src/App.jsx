@@ -2,8 +2,6 @@ import { useState } from "react";
 import Game from "./components/Game/Game";
 import MainMenu from "./components/MainMenu/MainMenu";
 
-// TODO: Select new difficulty after game over, without creating a new game instance
-// TODO: Convert useGame hook into context
 // TODO: Add animations
 // TODO: Create API
 

@@ -21,7 +21,7 @@ const Game = ({ difficulty, setDifficulty }) => {
   };
 
   return (
-    <div className="game">
+    <div className="game max-w-[400px] w-full">
       <Score gameState={gameState} />
       {!isGameOver ? (
         <Board gameState={gameState} clickCard={clickCard} />

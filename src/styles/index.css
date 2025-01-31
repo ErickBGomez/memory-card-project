@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  #root {
+    @apply w-full flex flex-col items-center;
+  }
+
   body {
     @apply bg-black flex items-center justify-center h-screen text-white;
   }
