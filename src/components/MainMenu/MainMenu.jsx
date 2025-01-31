@@ -4,11 +4,10 @@ const MainMenu = ({ setDifficulty }) => {
   };
 
   return (
-    <div className="main-menu">
-      <h1 className="text-4xl font-bold text-center text-white">
-        Memory Card Game
-      </h1>
-      <div className="flex flex-col justify-center gap-4 mt-4">
+    <div className="main-menu flex flex-col gap-6">
+      <h1 className="text-5xl font-bold text-center text-white">MEMORY CARD</h1>
+      <p className="text-center">SELECT A DIFFICULTY</p>
+      <div className="flex flex-col justify-center gap-4">
         <button className="primary" onClick={() => selectDifficulty(0)}>
           EASY
         </button>
