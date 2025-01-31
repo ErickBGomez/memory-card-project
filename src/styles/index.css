@@ -6,4 +6,8 @@
   body {
     @apply bg-black flex items-center justify-center h-screen text-white;
   }
+
+  button {
+    @apply bg-white text-black font-bold w-full p-2 rounded-lg;
+  }
 }
