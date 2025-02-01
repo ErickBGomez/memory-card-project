@@ -10,12 +10,14 @@ const useFetchCards = () => {
       setLoading(true);
       setError(null);
 
+      // Validate quantity
       const parsedQuantity = Number(quantity);
 
       if (isNaN(parsedQuantity)) throw new Error("Quantity must be a number");
       if (parsedQuantity < 1)
         throw new Error("Quantity must be greater than 0");
 
+      // Fetch cards
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}${
           import.meta.env.ENDPOINT
@@ -33,7 +35,9 @@ const useFetchCards = () => {
 
       const result = await response.json();
 
+      // Get cards either from cards state or the return value
       setCards(result);
+      return cards;
     } catch (e) {
       setError(e.message);
     } finally {
