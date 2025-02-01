@@ -21,16 +21,47 @@ class GameLogic {
 
   startNewGame(difficulty) {
     this.#state = this.#initialize(difficulty);
+    console.log(this.#state.cards);
     this.#notify();
   }
 
-  #initialize(difficulty) {
+  // TODO: this.#state.cards is undefined
+  #getQuantity(difficulty) {
+    return 4 + difficulty * 2;
+  }
+
+  async #fetchCards(quantity = 1) {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}${
+          import.meta.env.VITE_ENDPOINT
+        }${quantity}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch cards");
+      }
+
+      const cards = (await response.json()).content;
+
+      // Add clicked state to every card
+      return cards.map((card) => ({ ...card, clicked: false }));
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async #initialize(difficulty) {
     console.log("game initialized");
-    const cards = cardsdb.map((card) => ({ ...card, clicked: false }));
 
     return {
       difficulty,
-      cards: cards.slice(0, 4 + difficulty * 2),
+      cards: await this.#fetchCards(this.#getQuantity(difficulty)),
       phase: 1,
       score: 0,
       highScore: this.#state?.highScore || 0,

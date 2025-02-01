@@ -2,8 +2,8 @@ import { useCallback, useState } from "react";
 import GameLogic from "./gameLogic";
 import { useEffect } from "react";
 
-const useGame = (difficulty = 0) => {
-  const [gameLogic] = useState(() => new GameLogic(difficulty));
+const useGame = () => {
+  const [gameLogic] = useState(() => new GameLogic());
   const [gameState, setGameState] = useState(null);
 
   useEffect(() => {
