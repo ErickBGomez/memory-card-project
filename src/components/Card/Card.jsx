@@ -1,5 +1,3 @@
-import useGame from "../../hooks/useGame";
-
 const Card = ({ url, onClick }) => {
   return (
     <div
