@@ -68,7 +68,7 @@ class GameLogic {
   }
 
   // Actions
-  clickCard(c) {
+  async clickCard(c) {
     const newState = { ...this.#state };
     const card = newState.cards.find((card) => card._id === c._id);
 
@@ -105,10 +105,9 @@ class GameLogic {
 
         console.log("New phase reached!");
 
-        newState.cards = newState.cards.map((card) => ({
-          ...card,
-          clicked: false,
-        }));
+        newState.cards = await this.#fetchCards(
+          this.#getQuantity(newState.difficulty)
+        );
       }
 
       // Shuffle cards for each click
