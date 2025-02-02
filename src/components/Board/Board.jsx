@@ -3,8 +3,12 @@ import Card from "../Card/Card";
 const Board = ({ gameState, clickCard }) => {
   const { difficulty, cards } = gameState || {};
 
-  const mappedCards = cards?.map((card) => (
-    <Card key={card.id} icon={card.icon} onClick={() => clickCard(card)} />
+  const mappedCards = cards?.map((card, index) => (
+    <Card
+      key={card._id || index}
+      url={card.url}
+      onClick={() => clickCard(card)}
+    />
   ));
 
   return (

@@ -1,6 +1,6 @@
 import useGame from "../../hooks/useGame";
 
-const Card = ({ icon, onClick }) => {
+const Card = ({ url, onClick }) => {
   return (
     <div
       className="
@@ -15,7 +15,7 @@ const Card = ({ icon, onClick }) => {
       "
       onClick={onClick}
     >
-      {icon}
+      <img src={url} />
     </div>
   );
 };
