@@ -54,6 +54,7 @@ class GameLogic {
 
   #notify() {
     this.#observers.forEach((callback) => callback(this.#state));
+    console.log(this.#state);
   }
 
   subscribe(callback) {
@@ -70,7 +71,7 @@ class GameLogic {
   // Actions
   clickCard(c) {
     const newState = { ...this.#state };
-    const card = newState.cards.find((card) => card.id === c.id);
+    const card = newState.cards.find((card) => card._id === c._id);
 
     // Avoid clicking cards when game is over
     if (newState.isGameOver) {
@@ -94,7 +95,7 @@ class GameLogic {
     // If card is not clicked
     else {
       newState.cards = newState.cards.map((c) =>
-        c.id === card.id ? { ...c, clicked: true } : c
+        c._id === card._id ? { ...c, clicked: true } : c
       );
 
       newState.score++;
