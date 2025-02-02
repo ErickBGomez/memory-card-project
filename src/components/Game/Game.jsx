@@ -4,7 +4,7 @@ import Board from "../Board/Board";
 import Score from "../Score/Score";
 
 const Game = ({ difficulty, returnMenu }) => {
-  const { gameState, clickCard, startNewGame } = useGame(difficulty);
+  const { gameState, clickCard, startNewGame } = useGame();
 
   const { isGameOver } = gameState || {};
 

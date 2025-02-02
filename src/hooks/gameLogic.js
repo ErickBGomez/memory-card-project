@@ -19,13 +19,11 @@ class GameLogic {
 
   constructor() {}
 
-  startNewGame(difficulty) {
-    this.#state = this.#initialize(difficulty);
-    console.log(this.#state.cards);
+  async startNewGame(difficulty) {
+    this.#state = await this.#initialize(difficulty);
     this.#notify();
   }
 
-  // TODO: this.#state.cards is undefined
   #getQuantity(difficulty) {
     return 4 + difficulty * 2;
   }
