@@ -15,7 +15,7 @@ const Board = ({ gameState, clickCard }) => {
     <div
       // Apply max-w-96 class only when difficulty is 1 (3x2 board)
       className={`
-      board flex items-center justify-center gap-4 flex-wrap
+      board flex items-center self-center justify-center gap-4 flex-wrap
       ${difficulty === 1 ? "max-w-80" : "max-w-96"}
       `}
     >

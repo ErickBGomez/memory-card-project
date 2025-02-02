@@ -9,7 +9,7 @@ const Score = ({ gameState }) => {
   ];
 
   return (
-    <div className="score grid grid-cols-3 mb-4">
+    <div className="score grid grid-cols-3">
       {scoreInfo.map((info, index) => {
         const { label, value, alignment } = info;
 

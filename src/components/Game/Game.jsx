@@ -21,13 +21,15 @@ const Game = ({ difficulty, returnMenu }) => {
   };
 
   return (
-    <div className="game max-w-[400px] w-full">
+    <div className="game max-w-[400px] w-full flex flex-col gap-4">
       <Score gameState={gameState} />
       {!isGameOver ? (
         <Board gameState={gameState} clickCard={clickCard} />
       ) : (
-        <div className="game-over flex flex-col gap-2 mt-4">
-          <div className="text-white text-2xl text-center">GAME OVER!</div>
+        <div className="game-over flex flex-col gap-2">
+          <div className="text-white text-3xl text-center mt-4 mb-4">
+            GAME OVER!
+          </div>
           <button className="primary" onClick={restartGame}>
             PLAY AGAIN
           </button>
