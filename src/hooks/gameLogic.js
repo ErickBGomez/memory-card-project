@@ -54,7 +54,6 @@ class GameLogic {
 
   #notify() {
     this.#observers.forEach((callback) => callback(this.#state));
-    console.log(this.#state);
   }
 
   subscribe(callback) {
