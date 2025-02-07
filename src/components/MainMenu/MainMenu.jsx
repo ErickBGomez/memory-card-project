@@ -1,4 +1,10 @@
-import { AnimatePresence, motion } from "motion/react";
+import {
+  AnimatePresence,
+  easeIn,
+  easeInOut,
+  easeOut,
+  motion,
+} from "motion/react";
 import { useEffect, useState } from "react";
 import SelectDifficulty from "../SelectDifficulty/SelectDifficulty";
 
@@ -19,7 +25,11 @@ const MainMenu = ({ setDifficulty }) => {
           layout
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5, layout: { duration: 0.5 } }}
+          transition={{
+            duration: 1,
+            delay: 0.5,
+            layout: { duration: 0.5, ease: easeInOut },
+          }}
         >
           <h1 className="text-5xl font-bold text-center text-white">
             MEMORY CARD
