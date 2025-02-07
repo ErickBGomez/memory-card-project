@@ -23,7 +23,11 @@ const SelectDifficulty = ({ setDifficulty }) => {
       className="primary"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.25, delay: 1 + index * 0.15 }}
+      transition={{
+        duration: 0.25,
+        delay: 1 + index * 0.15,
+        ease: [0.22, 1, 0.36, 1],
+      }}
     >
       {button.text}
     </motion.button>
