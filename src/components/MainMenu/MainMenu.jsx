@@ -1,10 +1,6 @@
 import { motion } from "motion/react";
 
 const MainMenu = ({ setDifficulty }) => {
-  const selectDifficulty = (difficulty) => {
-    setDifficulty(difficulty);
-  };
-
   const buttons = [
     {
       text: "EASY",
