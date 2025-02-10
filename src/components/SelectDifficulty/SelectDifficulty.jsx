@@ -1,6 +1,8 @@
 import { motion } from "motion/react";
+import { forwardRef } from "react";
 
-const SelectDifficulty = ({ setDifficulty }) => {
+// forwardRef is used because of Framer motion
+const SelectDifficulty = forwardRef(({ setDifficulty }, ref) => {
   const buttons = [
     {
       text: "EASY",
@@ -39,6 +41,7 @@ const SelectDifficulty = ({ setDifficulty }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.5 }}
+        ref={ref}
       >
         <p className="text-center mt-6 mb-6">SELECT A DIFFICULTY</p>
       </motion.div>
@@ -47,6 +50,8 @@ const SelectDifficulty = ({ setDifficulty }) => {
       </div>
     </>
   );
-};
+});
+
+SelectDifficulty.displayName = "SelectDifficulty";
 
 export default SelectDifficulty;

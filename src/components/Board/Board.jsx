@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Card from "../Card/Card";
+import { AnimatePresence } from "motion/react";
 
 const Board = ({ gameState, clickCard }) => {
   const { difficulty, cards } = gameState || {};
@@ -38,7 +39,9 @@ const Board = ({ gameState, clickCard }) => {
       ${difficulty === 1 ? "max-w-80" : "max-w-96"}
       `}
     >
-      {renderedCards.content}
+      <AnimatePresence mode="popLayout">
+        {renderedCards.content}
+      </AnimatePresence>
     </div>
   );
 };
