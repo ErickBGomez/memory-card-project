@@ -8,8 +8,6 @@ const Card = ({ url, onClick }) => {
         text-white
         bg-black border-4 border-solid border-white rounded-lg
         cursor-pointer select-none
-        hover:-translate-y-2
-        transition
       "
       onClick={onClick}
     >

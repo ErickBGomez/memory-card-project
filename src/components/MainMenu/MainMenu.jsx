@@ -1,10 +1,4 @@
-import {
-  AnimatePresence,
-  easeIn,
-  easeInOut,
-  easeOut,
-  motion,
-} from "motion/react";
+import { AnimatePresence, easeInOut, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import SelectDifficulty from "../SelectDifficulty/SelectDifficulty";
 
