@@ -8,6 +8,7 @@ const Board = ({ gameState, clickCard }) => {
       key={card._id || index}
       url={card.url}
       onClick={() => clickCard(card)}
+      animationDelay={index * 0.1}
     />
   ));
 

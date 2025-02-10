@@ -1,6 +1,8 @@
-const Card = ({ url, onClick }) => {
+import { motion } from "motion/react";
+
+const Card = ({ url, onClick, animationDelay = 0 }) => {
   return (
-    <div
+    <motion.div
       className="
         card
         flex items-center justify-center
@@ -10,9 +12,12 @@ const Card = ({ url, onClick }) => {
         cursor-pointer select-none
       "
       onClick={onClick}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: animationDelay, duration: 0.25 }}
     >
       <img src={url} />
-    </div>
+    </motion.div>
   );
 };
 
