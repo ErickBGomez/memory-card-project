@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Card from "../Card/Card";
-import { AnimatePresence } from "motion/react";
 
 const Board = ({ gameState, clickCard }) => {
   const { difficulty, cards } = gameState || {};
@@ -10,9 +9,20 @@ const Board = ({ gameState, clickCard }) => {
     <Card
       key={card._id || index}
       url={card.url}
-      onClick={() => clickCard(card)}
+      onClick={() => {
+        clickCard(card);
+        shuffleCards();
+      }}
     />
   ));
+
+  // Shuffle cards in frontend to avoid creating new cards every click
+  const shuffleCards = () => {
+    setRenderedCards((cards) => ({
+      content: cards.content.sort(() => Math.random() - 0.5),
+      index: cards.index,
+    }));
+  };
 
   // Delay rendering of cards to create a staggered effect
   useEffect(() => {
@@ -33,15 +43,13 @@ const Board = ({ gameState, clickCard }) => {
 
   return (
     <div
-      // Apply max-w-96 class only when difficulty is 1 (3x2 board)1
+      // Apply max-w-96 class only when difficulty is 1 (3x2 board)
       className={`
       board flex items-center self-center justify-center gap-4 flex-wrap
       ${difficulty === 1 ? "max-w-80" : "max-w-96"}
       `}
     >
-      <AnimatePresence mode="popLayout">
-        {renderedCards.content}
-      </AnimatePresence>
+      {renderedCards.content}
     </div>
   );
 };
