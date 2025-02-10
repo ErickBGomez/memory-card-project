@@ -10,10 +10,10 @@ const Board = ({ gameState, clickCard }) => {
       key={card._id || index}
       url={card.url}
       onClick={() => clickCard(card)}
-      animationDelay={index * 0.1}
     />
   ));
 
+  // Delay rendering of cards to create a staggered effect
   useEffect(() => {
     const interval = setInterval(() => {
       if (renderedCards.index >= mappedCards.length) {

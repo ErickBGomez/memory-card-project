@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 
-// TODO: Find a way to correctly delay a card without affecting the rest of animations delays
-const Card = ({ url, onClick, animationDelay = 0 }) => {
+const Card = ({ url, onClick }) => {
   return (
     <motion.div
       className="
