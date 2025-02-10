@@ -3,8 +3,7 @@ import Card from "../Card/Card";
 
 const Board = ({ gameState, clickCard }) => {
   const { difficulty, cards } = gameState || {};
-  const [renderedCard, setRenderedCards] = useState([]);
-  const [index, setRenderedIndex] = useState(0);
+  const [renderedCards, setRenderedCards] = useState({ content: [], index: 0 });
 
   const mappedCards = cards?.map((card, index) => (
     <Card
@@ -17,17 +16,19 @@ const Board = ({ gameState, clickCard }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (index >= mappedCards.length) {
+      if (renderedCards.index >= mappedCards.length) {
         clearInterval(interval);
         return;
       }
 
-      setRenderedCards((prev) => [...prev, mappedCards[index]]);
-      setRenderedIndex(index + 1);
+      setRenderedCards((prev) => ({
+        content: [...prev.content, mappedCards[prev.index]],
+        index: prev.index + 1,
+      }));
     }, 100);
 
     return () => clearInterval(interval);
-  }, [mappedCards, index]);
+  }, [mappedCards]);
 
   return (
     <div
@@ -37,7 +38,7 @@ const Board = ({ gameState, clickCard }) => {
       ${difficulty === 1 ? "max-w-80" : "max-w-96"}
       `}
     >
-      {renderedCard}
+      {renderedCards.content}
     </div>
   );
 };
