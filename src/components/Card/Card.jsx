@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 
+// TODO: Find a way to correctly delay a card without affecting the rest of animations delays
 const Card = ({ url, onClick, animationDelay = 0 }) => {
   return (
     <motion.div
@@ -14,7 +15,8 @@ const Card = ({ url, onClick, animationDelay = 0 }) => {
       onClick={onClick}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: animationDelay, duration: 0.25 }}
+      whileHover={{ y: -5 }}
+      transition={{ duration: 0.15 }}
     >
       <img src={url} />
     </motion.div>
