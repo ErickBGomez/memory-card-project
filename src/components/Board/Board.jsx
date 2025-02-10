@@ -17,17 +17,14 @@ const Board = ({ gameState, clickCard }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log(mappedCards.length);
-      console.log(index);
-
-      setRenderedCards((prev) => [...prev, mappedCards[index]]);
-      setRenderedIndex(index + 1);
-
-      if (index >= mappedCards.length - 1) {
+      if (index >= mappedCards.length) {
         clearInterval(interval);
         return;
       }
-    }, 250);
+
+      setRenderedCards((prev) => [...prev, mappedCards[index]]);
+      setRenderedIndex(index + 1);
+    }, 100);
 
     return () => clearInterval(interval);
   }, [mappedCards, index]);
