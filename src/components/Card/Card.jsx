@@ -15,6 +15,7 @@ const Card = ({ url, onClick }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ y: -5 }}
+      whileTap={{ y: 0, transition: { duration: 0.025 } }}
       transition={{ duration: 0.15 }}
     >
       <img src={url} />
