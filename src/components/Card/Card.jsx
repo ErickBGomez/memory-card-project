@@ -1,6 +1,24 @@
 import { motion } from "motion/react";
 
 const Card = ({ url, onClick }) => {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.15,
+      },
+    },
+    hover: {
+      y: -5,
+    },
+    clicked: {
+      y: 0,
+      transition: { duration: 0.025 },
+    },
+  };
+
   return (
     <motion.div
       className="
@@ -12,11 +30,12 @@ const Card = ({ url, onClick }) => {
         cursor-pointer select-none
       "
       onClick={onClick}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -5 }}
-      whileTap={{ y: 0, transition: { duration: 0.025 } }}
-      transition={{ duration: 0.15 }}
+      variants={cardVariants}
+      initial="hidden"
+      animate="show"
+      whileHover="hover"
+      whileTap="clicked"
+      // transition={{ duration: 0.15 }}
     >
       <img src={url} />
     </motion.div>
