@@ -109,6 +109,9 @@ class GameLogic {
           this.#getQuantity(newState.difficulty)
         );
       }
+
+      // Shuffle cards after click
+      newState.cards.sort(() => Math.random() - 0.5);
     }
 
     this.#state = newState;
