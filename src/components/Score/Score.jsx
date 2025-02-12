@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+
 const Score = ({ gameState }) => {
   const { score, highScore, phase } = gameState || {};
 
@@ -9,7 +11,11 @@ const Score = ({ gameState }) => {
   ];
 
   return (
-    <div className="score grid grid-cols-3">
+    <motion.div
+      layout
+      className="score grid grid-cols-3"
+      transition={{ layout: { duration: 0.25, ease: "easeInOut" } }}
+    >
       {scoreInfo.map((info, index) => {
         const { label, value, alignment } = info;
 
@@ -20,7 +26,7 @@ const Score = ({ gameState }) => {
           </div>
         );
       })}
-    </div>
+    </motion.div>
   );
 };
 
