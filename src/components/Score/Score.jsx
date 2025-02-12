@@ -20,10 +20,16 @@ const Score = ({ gameState }) => {
         const { label, value, alignment } = info;
 
         return (
-          <div className={`flex flex-col ${alignment}`} key={index}>
+          <motion.div
+            className={`flex flex-col ${alignment}`}
+            key={index}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: index * 0.15 }}
+          >
             <div className="label font-bold text-xs">{label}</div>
             <div className="value">{value}</div>
-          </div>
+          </motion.div>
         );
       })}
     </motion.div>
