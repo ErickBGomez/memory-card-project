@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { motion } from "motion/react";
 import useGame from "../../hooks/useGame";
 import Board from "../Board/Board";
 import Score from "../Score/Score";
@@ -7,6 +8,11 @@ const Game = ({ difficulty, returnMenu }) => {
   const { gameState, clickCard, startNewGame } = useGame();
 
   const { isGameOver } = gameState || {};
+
+  const gameOverAnimationVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 },
+  };
 
   useEffect(() => {
     startNewGame(difficulty);
@@ -26,7 +32,12 @@ const Game = ({ difficulty, returnMenu }) => {
       {!isGameOver ? (
         <Board gameState={gameState} clickCard={clickCard} />
       ) : (
-        <div className="game-over flex flex-col gap-2">
+        <motion.div
+          className="game-over flex flex-col gap-2"
+          variants={gameOverAnimationVariants}
+          initial="hidden"
+          animate="show"
+        >
           <div className="text-white text-3xl text-center mt-4 mb-4">
             GAME OVER!
           </div>
@@ -36,7 +47,7 @@ const Game = ({ difficulty, returnMenu }) => {
           <button className="secondary" onClick={returnMainMenu}>
             RETURN MAIN MENU
           </button>
-        </div>
+        </motion.div>
       )}
     </div>
   );

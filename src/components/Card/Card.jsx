@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 
-const Card = ({ url, onClick }) => {
+const Card = ({ id, url, onClick }) => {
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     show: {
@@ -30,12 +30,12 @@ const Card = ({ url, onClick }) => {
         cursor-pointer select-none
       "
       onClick={onClick}
+      key={id}
       variants={cardVariants}
       initial="hidden"
       animate="show"
       whileHover="hover"
       whileTap="clicked"
-      // transition={{ duration: 0.15 }}
     >
       <img src={url} />
     </motion.div>

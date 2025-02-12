@@ -6,6 +6,7 @@ const Board = ({ gameState, clickCard }) => {
   const mappedCards = cards?.map((card, index) => (
     <Card
       key={card._id || index}
+      id={card._id}
       url={card.url}
       onClick={() => clickCard(card)}
     />
