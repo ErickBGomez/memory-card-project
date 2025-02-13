@@ -1,6 +1,9 @@
-import { motion } from "motion/react";
+import { motion, useAnimate } from "motion/react";
+import { useEffect } from "react";
 
 const Card = ({ id, url, onClick }) => {
+  const [scope, animate] = useAnimate();
+
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     show: {
@@ -19,8 +22,17 @@ const Card = ({ id, url, onClick }) => {
     },
   };
 
+  useEffect(() => {
+    const waitAnimation = setTimeout(() => {
+      animate(scope.current, { rotateY: 180 });
+    }, 3000);
+
+    return () => clearTimeout(waitAnimation);
+  }, [animate, scope]);
+
   return (
     <motion.div
+      ref={scope}
       className="
         card
         flex items-center justify-center
