@@ -1,6 +1,5 @@
 import { motion, useAnimate } from "motion/react";
 import { useEffect } from "react";
-import "./Card.css";
 
 const Card = ({ id, url, onClick }) => {
   const [scope, animate] = useAnimate();
@@ -46,6 +45,7 @@ const Card = ({ id, url, onClick }) => {
         text-white
         bg-black border-4 border-solid border-white rounded-lg
         cursor-pointer select-none
+        relative transform-style-preserve-3d
       "
         variants={cardVariants}
         initial="hidden"
@@ -53,10 +53,12 @@ const Card = ({ id, url, onClick }) => {
         whileHover="hover"
         whileTap="clicked"
       >
-        <div className="front">
+        <div className="front absolute w-full h-full backface-hidden">
           <img src={url} />
         </div>
-        <div className="back">Backface</div>
+        <div className="back absolute w-full h-full backface-hidden rotate-y-180">
+          Backface
+        </div>
       </motion.div>
     </div>
   );
