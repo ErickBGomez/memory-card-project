@@ -1,5 +1,6 @@
 import { motion, useAnimate } from "motion/react";
 import { useEffect } from "react";
+import "./Card.css";
 
 const Card = ({ id, url, onClick }) => {
   const [scope, animate] = useAnimate();
@@ -13,8 +14,12 @@ const Card = ({ id, url, onClick }) => {
         duration: 0.15,
       },
     },
+    // Temporally disabled
+    // hover: {
+    //   y: -5,
+    // },
     hover: {
-      y: -5,
+      rotateY: 0,
     },
     clicked: {
       y: 0,
@@ -31,36 +36,29 @@ const Card = ({ id, url, onClick }) => {
   }, [animate, scope]);
 
   return (
-    <motion.div
-      ref={scope}
-      className="
+    <div key={id} className="card-container perspective-1000" onClick={onClick}>
+      <motion.div
+        ref={scope}
+        className="
         card
         flex items-center justify-center
         w-20 h-28
         text-white
         bg-black border-4 border-solid border-white rounded-lg
         cursor-pointer select-none
-        perspective-1000
       "
-      onClick={onClick}
-      key={id}
-      variants={cardVariants}
-      initial="hidden"
-      animate="show"
-      whileHover="hover"
-      whileTap="clicked"
-    >
-      <div className="inner relative w-full h-full transform-3d">
-        <div className="front absolute w-full h-full backface-hidden">
-          <div className="w-full h-full overflow-hidden bg-white">
-            <img src={url} />
-          </div>
+        variants={cardVariants}
+        initial="hidden"
+        animate="show"
+        whileHover="hover"
+        whileTap="clicked"
+      >
+        <div className="front">
+          <img src={url} />
         </div>
-        <div className="back absolute w-full h-full [backface-visibility:hidden] rotate-y-180">
-          <div className="w-full h-full bg-black" />
-        </div>
-      </div>
-    </motion.div>
+        <div className="back">Backface</div>
+      </motion.div>
+    </div>
   );
 };
 
