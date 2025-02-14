@@ -8,7 +8,7 @@ import GameOver from "../GameOver/GameOver";
 const Game = ({ difficulty, returnMenu }) => {
   const { gameState, clickCard, startNewGame } = useGame();
 
-  const { isGameOver } = gameState || {};
+  const { isGameOver, lastClicked } = gameState || {};
 
   useEffect(() => {
     startNewGame(difficulty);
@@ -22,6 +22,8 @@ const Game = ({ difficulty, returnMenu }) => {
     returnMenu(-1);
   };
 
+  console.log(lastClicked);
+
   return (
     <AnimatePresence mode="popLayout">
       <div className="game max-w-[400px] w-full flex flex-col gap-4">
@@ -29,7 +31,11 @@ const Game = ({ difficulty, returnMenu }) => {
         {!isGameOver ? (
           <Board gameState={gameState} clickCard={clickCard} />
         ) : (
-          <GameOver restartGame={restartGame} returnMainMenu={returnMainMenu} />
+          <GameOver
+            restartGame={restartGame}
+            returnMainMenu={returnMainMenu}
+            lastCardClicked={lastClicked}
+          />
         )}
       </div>
     </AnimatePresence>

@@ -1,7 +1,7 @@
 import { motion, useAnimate } from "motion/react";
 import { useEffect, useState } from "react";
 
-const Card = ({ id, url, onClick, flipped }) => {
+const Card = ({ id = 0, url, onClick = () => {}, flipped = false }) => {
   const [scope, animate] = useAnimate();
   const [mountCooldown, setMountCooldown] = useState(true);
 

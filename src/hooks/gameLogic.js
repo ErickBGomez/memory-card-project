@@ -45,6 +45,7 @@ class GameLogic {
     return {
       difficulty,
       cards: await this.#fetchCards(this.#getQuantity(difficulty)),
+      lastClicked: null,
       phase: 1,
       score: 0,
       highScore: this.#state?.highScore || 0,
@@ -98,6 +99,7 @@ class GameLogic {
       );
 
       newState.score++;
+      newState.lastClicked = card;
 
       // Check if all cards are clicked
       if (newState.cards.every((card) => card.clicked)) {
