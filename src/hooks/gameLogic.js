@@ -45,6 +45,7 @@ class GameLogic {
     return {
       difficulty,
       cards: await this.#fetchCards(this.#getQuantity(difficulty)),
+      clickedCards: 0,
       phase: 1,
       score: 0,
       highScore: this.#state?.highScore || 0,
@@ -112,6 +113,7 @@ class GameLogic {
 
       // Shuffle cards after click
       newState.cards.sort(() => Math.random() - 0.5);
+      newState.clickedCards++;
     }
 
     this.#state = newState;

@@ -1,16 +1,25 @@
 import { useState } from "react";
 import Card from "../Card/Card";
+import { AnimatePresence } from "motion/react";
 
 const Board = ({ gameState, clickCard }) => {
-  const { difficulty, cards } = gameState || {};
+  const { difficulty, cards, clickedCards } = gameState || {};
   const [cardsFlipped, setCardsFlipped] = useState(false);
+  const [hideCards, setHideCards] = useState(false);
 
   const onClickCard = (card) => {
     // Flip all cards when a card is clicked, and then flip them back after 500ms
     setCardsFlipped(true);
     setTimeout(() => setCardsFlipped(false), 500);
     // Add delay when flipping the cards to avoid showing the new cards early
-    setTimeout(() => clickCard(card), 75);
+    setTimeout(() => {
+      clickCard(card);
+
+      if ((clickedCards + 1) % cards.length === 0) {
+        setHideCards(true);
+        setTimeout(() => setHideCards(false), 1000);
+      }
+    }, 75);
   };
 
   const mappedCards = cards?.map((card, index) => (
@@ -31,7 +40,7 @@ const Board = ({ gameState, clickCard }) => {
       ${difficulty === 1 ? "max-w-80" : "max-w-96"}
       `}
     >
-      {mappedCards}
+      <AnimatePresence>{!hideCards && mappedCards}</AnimatePresence>
     </div>
   );
 };

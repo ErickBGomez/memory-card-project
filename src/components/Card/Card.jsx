@@ -14,6 +14,13 @@ const Card = ({ id, url, onClick, flipped }) => {
         duration: 0.15,
       },
     },
+    exit: {
+      opacity: 0,
+      y: 20,
+      transition: {
+        duration: 0.15,
+      },
+    },
     hover: {
       y: -5,
     },
@@ -54,6 +61,7 @@ const Card = ({ id, url, onClick, flipped }) => {
         variants={cardVariants}
         initial="hidden"
         animate="show"
+        exit="exit"
         whileHover="hover"
         whileTap="clicked"
       >
