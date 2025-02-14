@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 import { AnimatePresence } from "motion/react";
 
 const Board = ({ gameState, clickCard }) => {
-  const { difficulty, cards, clickedCards } = gameState || {};
+  const { difficulty, cards, score } = gameState || {};
   const [cardsFlipped, setCardsFlipped] = useState(false);
   const [hideCards, setHideCards] = useState(false);
 
@@ -15,7 +15,8 @@ const Board = ({ gameState, clickCard }) => {
     setTimeout(() => {
       clickCard(card);
 
-      if ((clickedCards + 1) % cards.length === 0) {
+      // Hide cards when all of them were clicked (in other words, when scoring a new phase)
+      if ((score + 1) % cards.length === 0) {
         setHideCards(true);
         setTimeout(() => setHideCards(false), 1000);
       }
