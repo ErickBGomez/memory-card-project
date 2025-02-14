@@ -17,7 +17,7 @@ const GameOver = ({ restartGame, returnMainMenu, lastCardClicked }) => {
       <div className="text-white text-3xl text-center mt-4 mb-4">GAME OVER</div>
       <div className="info mb-4 flex flex-col items-center">
         <div className="info mb-2">THIS CARD HAS BEEN ALREADY CLICKED</div>
-        <Card id={lastCardClicked?._id} url={lastCardClicked?.url} />
+        <Card id={lastCardClicked?._id} url={lastCardClicked?.url} small />
       </div>
       <button className="primary" onClick={restartGame}>
         PLAY AGAIN

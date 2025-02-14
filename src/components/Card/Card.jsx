@@ -1,7 +1,13 @@
 import { motion, useAnimate } from "motion/react";
 import { useEffect, useState } from "react";
 
-const Card = ({ id = 0, url, onClick = () => {}, flipped = false }) => {
+const Card = ({
+  id = 0,
+  url,
+  onClick = () => {},
+  flipped = false,
+  small = false,
+}) => {
   const [scope, animate] = useAnimate();
   const [mountCooldown, setMountCooldown] = useState(true);
 
@@ -46,7 +52,11 @@ const Card = ({ id = 0, url, onClick = () => {}, flipped = false }) => {
   }, [animate, flipped, scope, mountCooldown]);
 
   return (
-    <div key={id} className="card-container perspective-1000" onClick={onClick}>
+    <div
+      key={id}
+      className={`card-container perspective-1000 ${small ? "scale-75" : ""}`}
+      onClick={onClick}
+    >
       <motion.div
         ref={scope}
         className="
