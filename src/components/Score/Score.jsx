@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import ScoreLabel from "../ScoreLabel/ScoreLabel";
 
 const Score = ({ gameState }) => {
   const { score, highScore, phase } = gameState || {};
@@ -20,16 +21,13 @@ const Score = ({ gameState }) => {
         const { label, value, alignment } = info;
 
         return (
-          <motion.div
-            className={`flex flex-col ${alignment}`}
+          <ScoreLabel
             key={index}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: index * 0.15 }}
-          >
-            <div className="label font-bold text-xs">{label}</div>
-            <div className="value">{value}</div>
-          </motion.div>
+            index={index}
+            label={label}
+            value={value}
+            alignment={alignment}
+          />
         );
       })}
     </motion.div>
