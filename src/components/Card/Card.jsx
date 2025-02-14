@@ -1,8 +1,9 @@
 import { motion, useAnimate } from "motion/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-const Card = ({ id, url, onClick }) => {
+const Card = ({ id, url, onClick, flipped }) => {
   const [scope, animate] = useAnimate();
+  const [mountCooldown, setMountCooldown] = useState(true);
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20, rotateY: 0 },
@@ -25,10 +26,17 @@ const Card = ({ id, url, onClick }) => {
   useEffect(() => {
     const waitAnimation = setTimeout(() => {
       animate(scope.current, { rotateY: 180 });
-    }, 250);
+      setMountCooldown(false);
+    }, 450);
 
     return () => clearTimeout(waitAnimation);
   }, [animate, scope]);
+
+  useEffect(() => {
+    if (mountCooldown) return;
+
+    animate(scope.current, { rotateY: flipped ? 0 : 180 });
+  }, [animate, flipped, scope, mountCooldown]);
 
   return (
     <div key={id} className="card-container perspective-1000" onClick={onClick}>

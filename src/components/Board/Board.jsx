@@ -1,14 +1,23 @@
+import { useState } from "react";
 import Card from "../Card/Card";
 
 const Board = ({ gameState, clickCard }) => {
   const { difficulty, cards } = gameState || {};
+  const [cardsFlipped, setCardsFlipped] = useState(false);
+
+  const onClickCard = (card) => {
+    clickCard(card);
+    setCardsFlipped(true);
+    setTimeout(() => setCardsFlipped(false), 500);
+  };
 
   const mappedCards = cards?.map((card, index) => (
     <Card
       key={card._id || index}
       id={card._id}
       url={card.url}
-      onClick={() => clickCard(card)}
+      onClick={() => onClickCard(card)}
+      flipped={cardsFlipped}
     />
   ));
 
