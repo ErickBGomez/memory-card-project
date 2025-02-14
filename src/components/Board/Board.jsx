@@ -6,8 +6,10 @@ const Board = ({ gameState, clickCard }) => {
   const [cardsFlipped, setCardsFlipped] = useState(false);
 
   const onClickCard = (card) => {
+    // Flip all cards when a card is clicked, and then flip them back after 500ms
     setCardsFlipped(true);
     setTimeout(() => setCardsFlipped(false), 500);
+    // Add delay when flipping the cards to avoid showing the new cards early
     setTimeout(() => clickCard(card), 75);
   };
 
