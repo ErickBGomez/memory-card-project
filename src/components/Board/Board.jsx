@@ -6,9 +6,9 @@ const Board = ({ gameState, clickCard }) => {
   const [cardsFlipped, setCardsFlipped] = useState(false);
 
   const onClickCard = (card) => {
-    clickCard(card);
     setCardsFlipped(true);
     setTimeout(() => setCardsFlipped(false), 500);
+    setTimeout(() => clickCard(card), 75);
   };
 
   const mappedCards = cards?.map((card, index) => (
