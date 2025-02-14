@@ -85,6 +85,7 @@ class GameLogic {
 
     // Check if card is already clicked
     if (card.clicked) {
+      newState.lastClicked = card;
       console.log(`Game over! Card (${card.title}) already clicked`);
 
       if (newState.score > newState.highScore)
@@ -99,7 +100,6 @@ class GameLogic {
       );
 
       newState.score++;
-      newState.lastClicked = card;
 
       // Check if all cards are clicked
       if (newState.cards.every((card) => card.clicked)) {
