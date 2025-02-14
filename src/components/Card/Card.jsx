@@ -5,7 +5,7 @@ const Card = ({ id, url, onClick }) => {
   const [scope, animate] = useAnimate();
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 20, rotateY: 180 },
+    hidden: { opacity: 0, y: 20, rotateY: 0 },
     show: {
       opacity: 1,
       y: 0,
@@ -13,12 +13,8 @@ const Card = ({ id, url, onClick }) => {
         duration: 0.15,
       },
     },
-    // Temporally disabled
-    // hover: {
-    //   y: -5,
-    // },
     hover: {
-      rotateY: 0,
+      y: -5,
     },
     clicked: {
       y: 0,
@@ -28,7 +24,7 @@ const Card = ({ id, url, onClick }) => {
 
   useEffect(() => {
     const waitAnimation = setTimeout(() => {
-      animate(scope.current, { rotateY: 0 });
+      animate(scope.current, { rotateY: 180 });
     }, 250);
 
     return () => clearTimeout(waitAnimation);
@@ -53,11 +49,11 @@ const Card = ({ id, url, onClick }) => {
         whileHover="hover"
         whileTap="clicked"
       >
-        <div className="front absolute w-full h-full backface-hidden">
-          <img src={url} />
-        </div>
-        <div className="back absolute w-full h-full backface-hidden rotate-y-180">
+        <div className="back absolute w-full h-full backface-hidden">
           Backface
+        </div>
+        <div className="front absolute w-full h-full backface-hidden rotate-y-180">
+          <img src={url} />
         </div>
       </motion.div>
     </div>
