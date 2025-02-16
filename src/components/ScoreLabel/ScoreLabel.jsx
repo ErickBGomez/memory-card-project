@@ -6,7 +6,9 @@ const ScoreLabel = ({ index, label, value, alignment }) => {
 
   // TODO: Find another way to animate the pulse
   useEffect(() => {
-    animate(scope.current, { opacity: [0, 1, 0] });
+    animate(scope.current, {
+      opacity: [0, 1, 0],
+    });
   }, [animate, scope, value]);
 
   return (
