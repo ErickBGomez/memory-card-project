@@ -8,7 +8,7 @@ import GameOver from "../GameOver/GameOver";
 const Game = ({ difficulty, returnMenu }) => {
   const { gameState, clickCard, startNewGame } = useGame();
 
-  const { cards, isGameOver, lastClicked } = gameState || {};
+  const { loading, error, isGameOver, lastClicked } = gameState || {};
 
   useEffect(() => {
     startNewGame(difficulty);
@@ -22,9 +22,15 @@ const Game = ({ difficulty, returnMenu }) => {
     returnMenu(-1);
   };
 
-  console.log(lastClicked);
-
-  if (!cards) return <div>Loading...</div>;
+  if (loading) return <div>Loading cards...</div>;
+  if (error)
+    return (
+      <div>
+        <h2>Oh no! An error has occurred!</h2>
+        <div>Something went wrong when loading the cards</div>
+        <button onClick={restartGame}>Retry</button>
+      </div>
+    );
 
   return (
     <AnimatePresence mode="popLayout">
