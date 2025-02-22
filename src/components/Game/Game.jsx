@@ -22,13 +22,13 @@ const Game = ({ difficulty, returnMenu }) => {
     returnMenu(-1);
   };
 
-  if (loading) return <div>Loading cards...</div>;
+  if (loading) return <div>LOADING CARDS...</div>;
   if (error)
     return (
-      <div>
-        <h2>Oh no! An error has occurred!</h2>
-        <div>Something went wrong when loading the cards</div>
-        <button onClick={restartGame}>Retry</button>
+      <div className="errors flex flex-col items-center justify-center gap-4">
+        <h2 className="text-2xl font-bold">AN ERROR HAS OCCURRED!</h2>
+        <div>SOMETHING WENT WRONG WHEN LOADING THE CARDS</div>
+        <button onClick={restartGame}>RETRY</button>
       </div>
     );
 
