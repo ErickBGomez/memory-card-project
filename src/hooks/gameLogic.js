@@ -41,7 +41,6 @@ class GameLogic {
       // Add clicked state to every card
       cards = content.map((card) => ({ ...card, clicked: false }));
     } catch (e) {
-      console.error(e);
       this.#state.error = e.message;
     } finally {
       this.#state.loading = false;
@@ -51,8 +50,6 @@ class GameLogic {
   }
 
   async #initialize(difficulty) {
-    console.log("game initialized");
-
     return {
       difficulty,
       loading: false,
@@ -91,15 +88,15 @@ class GameLogic {
       return;
     }
 
+    // Set errors in their respective attribute
     if (!card) {
-      console.log("Card not found");
+      newState.error = "Card not found";
       return;
     }
 
     // Check if card is already clicked
     if (card.clicked) {
       newState.lastClicked = card;
-      console.log(`Game over! Card (${card.title}) already clicked`);
 
       if (newState.score > newState.highScore)
         newState.highScore = newState.score;
@@ -116,9 +113,8 @@ class GameLogic {
 
       // Check if all cards are clicked
       if (newState.cards.every((card) => card.clicked)) {
+        // New phase reached
         newState.phase++;
-
-        console.log("New phase reached!");
 
         newState.cards = await this.#fetchCards(
           this.#getQuantity(newState.difficulty)
