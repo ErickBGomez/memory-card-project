@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { AnimatePresence } from "motion/react";
 import useGame from "../../hooks/useGame";
 import Board from "../Board/Board";
@@ -7,6 +7,7 @@ import GameOver from "../GameOver/GameOver";
 
 const Game = ({ difficulty, returnMenu }) => {
   const { gameState, clickCard, startNewGame } = useGame();
+  const gameRef = useRef(null);
 
   const { cards, isGameOver, lastClicked } = gameState || {};
 
@@ -26,7 +27,10 @@ const Game = ({ difficulty, returnMenu }) => {
 
   return (
     <AnimatePresence mode="popLayout">
-      <div className="game max-w-[400px] w-full flex flex-col gap-4">
+      <div
+        className="game max-w-[400px] w-full flex flex-col gap-4"
+        ref={gameRef}
+      >
         <Score gameState={gameState} />
         {!isGameOver ? (
           <Board gameState={gameState} clickCard={clickCard} />
