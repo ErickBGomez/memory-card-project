@@ -1,5 +1,6 @@
 import { motion, useAnimate } from "motion/react";
 import { useEffect } from "react";
+import PropTypes from "prop-types";
 
 const ScoreLabel = ({ index, label, value, alignment }) => {
   const [scope, animate] = useAnimate();
@@ -30,6 +31,13 @@ const ScoreLabel = ({ index, label, value, alignment }) => {
       </div>
     </motion.div>
   );
+};
+
+ScoreLabel.propTypes = {
+  index: PropTypes.number.isRequired,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  alignment: PropTypes.string.isRequired,
 };
 
 export default ScoreLabel;

@@ -1,5 +1,6 @@
 import { motion, useAnimate } from "motion/react";
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 const Card = ({
   id = 0,
@@ -78,12 +79,20 @@ const Card = ({
         <div className="back absolute w-full h-full backface-hidden">
           Backface
         </div>
-        <div className="front absolute w-full h-full backface-hidden rotate-y-180">
+        <div className="front absolute w-full h-full backface-hidden rotate-y-180 flex items-center">
           <img src={url} />
         </div>
       </motion.div>
     </div>
   );
+};
+
+Card.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  url: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  flipped: PropTypes.bool,
+  small: PropTypes.bool,
 };
 
 export default Card;

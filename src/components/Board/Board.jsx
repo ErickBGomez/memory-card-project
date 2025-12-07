@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import Card from "../Card/Card";
 import { AnimatePresence } from "motion/react";
+import PropTypes from "prop-types";
 
 const Board = ({ gameState, clickCard }) => {
   const { difficulty, cards, score } = gameState || {};
@@ -47,6 +48,22 @@ const Board = ({ gameState, clickCard }) => {
       <AnimatePresence>{!hideCards && mappedCards}</AnimatePresence>
     </div>
   );
+};
+
+Board.propTypes = {
+  gameState: PropTypes.shape({
+    difficulty: PropTypes.number.isRequired,
+    cards: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+          .isRequired,
+        url: PropTypes.string.isRequired,
+        clicked: PropTypes.bool.isRequired,
+      })
+    ).isRequired,
+    score: PropTypes.number.isRequired,
+  }).isRequired,
+  clickCard: PropTypes.func.isRequired,
 };
 
 export default Board;

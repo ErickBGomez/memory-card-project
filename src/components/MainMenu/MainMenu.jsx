@@ -1,6 +1,7 @@
 import { AnimatePresence, easeInOut, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import SelectDifficulty from "../SelectDifficulty/SelectDifficulty";
+import PropTypes from "prop-types";
 
 const MainMenu = ({ setDifficulty }) => {
   const [showDifficulty, setShowDifficulty] = useState(false);
@@ -39,6 +40,10 @@ const MainMenu = ({ setDifficulty }) => {
       </AnimatePresence>
     </div>
   );
+};
+
+MainMenu.propTypes = {
+  setDifficulty: PropTypes.func.isRequired,
 };
 
 export default MainMenu;

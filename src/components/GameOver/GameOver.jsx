@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import Card from "../Card/Card";
+import PropTypes from "prop-types";
 
 const GameOver = ({ restartGame, returnMainMenu, lastCardClicked }) => {
   const gameOverAnimationVariants = {
@@ -27,6 +28,15 @@ const GameOver = ({ restartGame, returnMainMenu, lastCardClicked }) => {
       </button>
     </motion.div>
   );
+};
+
+GameOver.propTypes = {
+  restartGame: PropTypes.func.isRequired,
+  returnMainMenu: PropTypes.func.isRequired,
+  lastCardClicked: PropTypes.shape({
+    _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    url: PropTypes.string,
+  }),
 };
 
 export default GameOver;

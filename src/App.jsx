@@ -2,9 +2,6 @@ import { useState } from "react";
 import Game from "./components/Game/Game";
 import MainMenu from "./components/MainMenu/MainMenu";
 
-// TODO: Add animations
-// TODO: Create API
-
 const App = () => {
   const [difficulty, setDifficulty] = useState(-1);
 

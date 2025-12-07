@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { forwardRef } from "react";
+import PropTypes from "prop-types";
 
 // forwardRef is used because of Framer motion
 const SelectDifficulty = forwardRef(({ setDifficulty }, ref) => {
@@ -53,5 +54,9 @@ const SelectDifficulty = forwardRef(({ setDifficulty }, ref) => {
 });
 
 SelectDifficulty.displayName = "SelectDifficulty";
+
+SelectDifficulty.propTypes = {
+  setDifficulty: PropTypes.func.isRequired,
+};
 
 export default SelectDifficulty;

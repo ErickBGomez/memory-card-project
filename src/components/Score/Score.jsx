@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import ScoreLabel from "../ScoreLabel/ScoreLabel";
+import PropTypes from "prop-types";
 
 const Score = ({ gameState }) => {
   const { score, highScore, phase } = gameState || {};
@@ -32,6 +33,14 @@ const Score = ({ gameState }) => {
       })}
     </motion.div>
   );
+};
+
+Score.propTypes = {
+  gameState: PropTypes.shape({
+    score: PropTypes.number.isRequired,
+    highScore: PropTypes.number.isRequired,
+    phase: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default Score;

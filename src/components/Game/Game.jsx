@@ -4,6 +4,7 @@ import useGame from "../../hooks/useGame";
 import Board from "../Board/Board";
 import Score from "../Score/Score";
 import GameOver from "../GameOver/GameOver";
+import PropTypes from "prop-types";
 
 const Game = ({ difficulty, returnMenu }) => {
   const { gameState, clickCard, startNewGame } = useGame();
@@ -44,6 +45,11 @@ const Game = ({ difficulty, returnMenu }) => {
       </div>
     </AnimatePresence>
   );
+};
+
+Game.propTypes = {
+  difficulty: PropTypes.number.isRequired,
+  returnMenu: PropTypes.func.isRequired,
 };
 
 export default Game;
