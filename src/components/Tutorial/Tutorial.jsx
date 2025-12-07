@@ -1,7 +1,8 @@
 import { motion } from "motion/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Card from "../Card/Card";
 import useGameCards from "../../hooks/useGameCards";
+import GameSettingsContext from "../../contexts/GameSettingsContext";
 
 const StepOne = () => {
   return (
@@ -48,6 +49,7 @@ const Steps = {
 
 const Tutorial = () => {
   const [step, setStep] = useState(1);
+  const { setShowTutorial } = useContext(GameSettingsContext);
   const cards = useGameCards(2);
 
   const handleNextStep = () => {
@@ -93,7 +95,9 @@ const Tutorial = () => {
         <button className="primary" onClick={handleNextStep}>
           NEXT STEP
         </button>
-        <button className="secondary">SKIP TUTORIAL</button>
+        <button className="secondary" onClick={() => setShowTutorial(false)}>
+          SKIP TUTORIAL
+        </button>
       </div>
     </div>
   );

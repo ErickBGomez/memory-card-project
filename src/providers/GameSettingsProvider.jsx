@@ -1,25 +1,26 @@
 import GameSettingsContext from "../contexts/GameSettingsContext";
 import PropTypes from "prop-types";
 import useLocalStorage from "../hooks/useLocalStorage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const GameSettingsProvider = ({ children }) => {
   const [difficulty, setDifficulty] = useState(-1);
   const { setItem, getItem } = useLocalStorage();
+  const [showTutorial, setShowTutorial] = useState(
+    getItem("showTutorial") ?? true
+  );
 
-  const getTutorialPreference = () => getItem("showTutorial") ?? true;
-
-  const setTutorialPreference = (showTutorial) => {
+  useEffect(() => {
     setItem("showTutorial", showTutorial);
-  };
+  }, [showTutorial, setItem]);
 
   return (
     <GameSettingsContext.Provider
       value={{
         difficulty,
         setDifficulty,
-        getTutorialPreference,
-        setTutorialPreference,
+        showTutorial,
+        setShowTutorial,
       }}
     >
       {children}

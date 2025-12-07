@@ -7,8 +7,7 @@ import Tutorial from "../Tutorial/Tutorial";
 
 const MainMenu = ({ setDifficulty }) => {
   const [showDifficulty, setShowDifficulty] = useState(false);
-  const { getTutorialPreference, setTutorialPreference } =
-    useContext(GameSettingsContext);
+  const { showTutorial } = useContext(GameSettingsContext);
 
   useEffect(() => {
     setTimeout(() => {
@@ -34,7 +33,7 @@ const MainMenu = ({ setDifficulty }) => {
             MEMORY CARD
           </h1>
         </motion.div>
-        {getTutorialPreference() ? (
+        {showTutorial ? (
           <Tutorial />
         ) : (
           showDifficulty && (
