@@ -18,7 +18,7 @@
   }
 
   button.primary {
-    @apply bg-white text-darkBlue border-white hover:bg-whiteHover active:bg-whiteActive;
+    @apply bg-white text-darkBlue border-white hover:bg-whiteHover active:bg-whiteActive disabled:bg-white/25 disabled:border-white/0;
   }
 
   button.secondary {

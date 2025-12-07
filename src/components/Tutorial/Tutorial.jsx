@@ -16,8 +16,8 @@ const StepOne = () => {
 const StepTwo = () => {
   return (
     <div>
-      <p>You might click one card at the time</p>
-      <p>Come one, click one!</p>
+      <p>You can select one card at the time</p>
+      <p>Come on, click one!</p>
     </div>
   );
 };
@@ -25,7 +25,7 @@ const StepTwo = () => {
 const StepThree = () => {
   return (
     <div>
-      <p>Then next card you will click MUST NOT BE selected before</p>
+      <p>But next one MUST NOT BE selected before</p>
       <p>Do you remember which one you selected?</p>
     </div>
   );
@@ -35,7 +35,7 @@ const StepFour = () => {
   return (
     <div>
       <p>In order to win, you must click all cards without repeating any</p>
-      <p>Good luck!</p>
+      <p>Click the last one!</p>
     </div>
   );
 };
@@ -49,21 +49,29 @@ const Steps = {
 
 const Tutorial = () => {
   const [step, setStep] = useState(1);
+  const [currentStepCompleted, setCurrentStepCompleted] = useState(true);
   const { setShowTutorial } = useContext(GameSettingsContext);
-  const cards = useGameCards(2);
+  const cards = useGameCards(3);
+  const [clickedCards, setClickedCards] = useState([]);
 
   const handleNextStep = () => {
     if (step >= 4) return;
     setStep(step + 1);
+    setCurrentStepCompleted(false);
   };
 
-  const handleCardClick = () => {
-    if (step <= 1) return;
-    console.log("hola");
+  const handleCardClick = (cardId) => {
+    if (clickedCards.includes(cardId)) return;
+
+    setClickedCards([...clickedCards, cardId]);
+
+    if (step === 2) {
+      currentStepCompleted(true);
+    }
   };
 
   return (
-    <div className="">
+    <div className="max-w-[400px]">
       {/* Title */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -92,12 +100,28 @@ const Tutorial = () => {
 
       {/* Action buttons */}
       <div className="flex flex-col gap-2">
-        <button className="primary" onClick={handleNextStep}>
-          NEXT STEP
-        </button>
-        <button className="secondary" onClick={() => setShowTutorial(false)}>
-          SKIP TUTORIAL
-        </button>
+        {step < 4 && (
+          <>
+            <button
+              className="primary"
+              onClick={handleNextStep}
+              disabled={!currentStepCompleted}
+            >
+              NEXT STEP
+            </button>
+            <button
+              className="secondary"
+              onClick={() => setShowTutorial(false)}
+            >
+              SKIP TUTORIAL
+            </button>
+          </>
+        )}
+        {step == 4 && (
+          <button className="primary" onClick={() => setShowTutorial(false)}>
+            FINISH TUTORIAL
+          </button>
+        )}
       </div>
     </div>
   );
