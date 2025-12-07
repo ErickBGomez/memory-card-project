@@ -1,3 +1,5 @@
+import fetchCards from "../helpers/fetch-cards";
+
 class GameLogic {
   #state;
   #observers = [];
@@ -15,27 +17,10 @@ class GameLogic {
 
   async #fetchCards(quantity = 1) {
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}${
-          import.meta.env.VITE_ENDPOINT
-        }${quantity}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch cards");
-      }
-
-      const content = (await response.json()).content;
-
-      // Add clicked state to every card
-      return content.map((card) => ({ ...card, clicked: false }));
+      const cards = await fetchCards(quantity);
+      return cards;
     } catch (e) {
-      console.error(e);
+      console.error("Failed to fetch cards", e);
       return [];
     }
   }

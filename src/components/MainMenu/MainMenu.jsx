@@ -1,10 +1,14 @@
 import { AnimatePresence, easeInOut, motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SelectDifficulty from "../SelectDifficulty/SelectDifficulty";
 import PropTypes from "prop-types";
+import GameSettingsContext from "../../contexts/GameSettingsContext";
+import Tutorial from "../Tutorial/Tutorial";
 
 const MainMenu = ({ setDifficulty }) => {
   const [showDifficulty, setShowDifficulty] = useState(false);
+  const { getTutorialPreference, setTutorialPreference } =
+    useContext(GameSettingsContext);
 
   useEffect(() => {
     setTimeout(() => {
@@ -30,12 +34,16 @@ const MainMenu = ({ setDifficulty }) => {
             MEMORY CARD
           </h1>
         </motion.div>
-        {showDifficulty && (
-          <SelectDifficulty
-            key="difficulty"
-            layout
-            setDifficulty={setDifficulty}
-          />
+        {getTutorialPreference() ? (
+          <Tutorial />
+        ) : (
+          showDifficulty && (
+            <SelectDifficulty
+              key="difficulty"
+              layout
+              setDifficulty={setDifficulty}
+            />
+          )
         )}
       </AnimatePresence>
     </div>
