@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import Card from "../Card/Card";
 import useGameCards from "../../hooks/useGameCards";
 import GameSettingsContext from "../../contexts/GameSettingsContext";
+import FloatingTextContext from "../../contexts/FloatingTextContext";
 
 const StepOne = () => {
   return (
@@ -53,6 +54,7 @@ const Tutorial = () => {
   const { setShowTutorial } = useContext(GameSettingsContext);
   const cards = useGameCards(3);
   const [clickedCards, setClickedCards] = useState([]);
+  const { createFloatingText } = useContext(FloatingTextContext);
 
   const handleNextStep = () => {
     if (step >= 4) return;
@@ -104,7 +106,8 @@ const Tutorial = () => {
           <>
             <button
               className="primary"
-              onClick={handleNextStep}
+              // onClick={handleNextStep}
+              onClick={(e) => createFloatingText(e, "hola")}
               disabled={!currentStepCompleted}
             >
               NEXT STEP
