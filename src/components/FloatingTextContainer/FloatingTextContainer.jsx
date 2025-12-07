@@ -16,7 +16,7 @@ const FloatingTextContainer = ({ children }) => {
             animate={{ opacity: 0, y: -50 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1 }}
-            className="fixed pointer-events-none text-white font-bold"
+            className="fixed pointer-events-none text-white font-bold z-[1000]"
             style={{ left: t.x, top: t.y }}
           >
             {t.label}

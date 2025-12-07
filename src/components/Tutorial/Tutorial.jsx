@@ -51,6 +51,7 @@ const Steps = {
 const Tutorial = () => {
   const [step, setStep] = useState(1);
   const [currentStepCompleted, setCurrentStepCompleted] = useState(true);
+  const [stepCardClicked, setStepCardClicked] = useState(null);
   const { setShowTutorial } = useContext(GameSettingsContext);
   const cards = useGameCards(3);
   const [clickedCards, setClickedCards] = useState([]);
@@ -62,13 +63,16 @@ const Tutorial = () => {
     setCurrentStepCompleted(false);
   };
 
-  const handleCardClick = (cardId) => {
+  const handleCardClick = (clickEvent, cardId) => {
     if (clickedCards.includes(cardId)) return;
+    if (currentStepCompleted) return;
 
     setClickedCards([...clickedCards, cardId]);
 
     if (step === 2) {
-      currentStepCompleted(true);
+      setCurrentStepCompleted(true);
+      setStepCardClicked(cardId);
+      createFloatingText(clickEvent, "✅");
     }
   };
 
@@ -95,7 +99,10 @@ const Tutorial = () => {
             key={card._id}
             id={card._id}
             url={card.url}
-            onClick={handleCardClick}
+            small={
+              card._id !== stepCardClicked && currentStepCompleted && step === 2
+            }
+            onClick={(clickEvent) => handleCardClick(clickEvent, card._id)}
           />
         ))}
       </div>
@@ -106,8 +113,7 @@ const Tutorial = () => {
           <>
             <button
               className="primary"
-              // onClick={handleNextStep}
-              onClick={(e) => createFloatingText(e, "hola")}
+              onClick={handleNextStep}
               disabled={!currentStepCompleted}
             >
               NEXT STEP
