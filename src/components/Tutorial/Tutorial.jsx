@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "motion/react";
-import { forwardRef, useContext, useState } from "react";
+import { forwardRef, useContext, useEffect, useState } from "react";
 import Card from "../Card/Card";
 import useGameCards from "../../hooks/useGameCards";
 import GameSettingsContext from "../../contexts/GameSettingsContext";
@@ -26,7 +26,7 @@ const StepTwo = () => {
 const StepThree = () => {
   return (
     <>
-      <p>But next one MUST NOT BE selected before</p>
+      <p>But the next one MUST NOT BE selected before</p>
       <p>Do you remember which one you selected?</p>
     </>
   );
@@ -51,9 +51,18 @@ const Steps = {
 const Tutorial = forwardRef((props, ref) => {
   const [step, setStep] = useState(1);
   const [currentStepCompleted, setCurrentStepCompleted] = useState(true);
+  const [cardsFlipped, setCardsFlipped] = useState(false);
   const { setShowTutorial } = useContext(GameSettingsContext);
   const cards = useGameCards(3, 1000);
   const { createFloatingText } = useContext(FloatingTextContext);
+
+  useEffect(() => {
+    if (step <= 2) return;
+
+    setCardsFlipped(true);
+    setTimeout(() => setCardsFlipped(false), 500);
+    setTimeout(() => cards.sort(() => Math.random() - 0.5), 75);
+  }, [step, cards]);
 
   const handleNextStep = () => {
     if (step >= 4) return;
@@ -132,6 +141,7 @@ const Tutorial = forwardRef((props, ref) => {
             id={card._id}
             url={card.url}
             onClick={(clickEvent) => handleCardClick(clickEvent, card)}
+            flipped={cardsFlipped}
           />
         ))}
       </motion.div>
