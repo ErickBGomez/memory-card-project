@@ -12,11 +12,11 @@ const FloatingTextContainer = ({ children }) => {
         {floatingTexts.map((t) => (
           <motion.div
             key={t.id}
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 0, y: -50 }}
+            initial={{ opacity: 1, y: 0, scale: 0.75 }}
+            animate={{ opacity: 0, y: -50, scale: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-            className="fixed pointer-events-none text-white font-bold z-[1000]"
+            transition={{ duration: 0.5 }}
+            className="fixed pointer-events-none text-white font-bold z-[1000] text-xl"
             style={{ left: t.x, top: t.y }}
           >
             {t.label}

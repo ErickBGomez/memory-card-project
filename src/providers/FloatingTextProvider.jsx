@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FloatingTextContext from "../contexts/FloatingTextContext";
 import PropTypes from "prop-types";
 
@@ -17,10 +17,6 @@ const FloatingTextProvider = ({ children }) => {
       setFloatingTexts((prev) => prev.filter((text) => text.id !== id));
     }, 1000);
   };
-
-  useEffect(() => {
-    console.log(floatingTexts);
-  }, [floatingTexts]);
 
   return (
     <FloatingTextContext.Provider value={{ floatingTexts, createFloatingText }}>

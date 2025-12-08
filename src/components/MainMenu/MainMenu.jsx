@@ -6,12 +6,12 @@ import GameSettingsContext from "../../contexts/GameSettingsContext";
 import Tutorial from "../Tutorial/Tutorial";
 
 const MainMenu = ({ setDifficulty }) => {
-  const [showDifficulty, setShowDifficulty] = useState(false);
+  const [showContent, setShowContent] = useState(false);
   const { showTutorial } = useContext(GameSettingsContext);
 
   useEffect(() => {
     setTimeout(() => {
-      setShowDifficulty(true);
+      setShowContent(true);
     }, 2000);
   }, []);
 
@@ -33,17 +33,12 @@ const MainMenu = ({ setDifficulty }) => {
             MEMORY CARD
           </h1>
         </motion.div>
-        {showTutorial ? (
-          <Tutorial />
-        ) : (
-          showDifficulty && (
-            <SelectDifficulty
-              key="difficulty"
-              layout
-              setDifficulty={setDifficulty}
-            />
-          )
-        )}
+        {showContent &&
+          (showTutorial ? (
+            <Tutorial />
+          ) : (
+            <SelectDifficulty setDifficulty={setDifficulty} />
+          ))}
       </AnimatePresence>
     </div>
   );

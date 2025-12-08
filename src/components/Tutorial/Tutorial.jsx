@@ -1,24 +1,9 @@
 import { AnimatePresence, motion } from "motion/react";
-import { useContext, useState } from "react";
+import { forwardRef, useContext, useState } from "react";
 import Card from "../Card/Card";
 import useGameCards from "../../hooks/useGameCards";
 import GameSettingsContext from "../../contexts/GameSettingsContext";
 import FloatingTextContext from "../../contexts/FloatingTextContext";
-
-const StepContainer = ({ children, stepKey }) => {
-  return (
-    <motion.div
-      className="w-full flex flex-col items-center text-[#e2e2e2] text-center text-sm"
-      key={stepKey}
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 1 }}
-    >
-      {children}
-    </motion.div>
-  );
-};
 
 const StepOne = () => {
   return (
@@ -63,11 +48,11 @@ const Steps = {
   4: <StepFour />,
 };
 
-const Tutorial = () => {
+const Tutorial = forwardRef((props, ref) => {
   const [step, setStep] = useState(1);
   const [currentStepCompleted, setCurrentStepCompleted] = useState(true);
   const { setShowTutorial } = useContext(GameSettingsContext);
-  const cards = useGameCards(3);
+  const cards = useGameCards(3, 1000);
   const { createFloatingText } = useContext(FloatingTextContext);
 
   const handleNextStep = () => {
@@ -87,7 +72,7 @@ const Tutorial = () => {
 
     if (step === 3 || step === 4) {
       if (cards.find((c) => c._id === card._id).clicked) {
-        createFloatingText(clickEvent, "❌ Already clicked!");
+        createFloatingText(clickEvent, "❌");
         return;
       }
 
@@ -103,32 +88,44 @@ const Tutorial = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, delay: 0.5 }}
+      ref={ref}
     >
       {/* Title */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.5 }}
+        transition={{ duration: 1, delay: 0.75 }}
       >
         <p className="text-center mt-6 mb-6">HOW TO PLAY</p>
       </motion.div>
 
       {/* Steps */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          className="w-full flex flex-col items-center text-[#e2e2e2] text-center text-sm"
-          key={step}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.3 }}
-        >
-          {Steps[step]}
-        </motion.div>
-      </AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1 }}
+      >
+        <AnimatePresence mode="wait">
+          <motion.div
+            className="w-full flex flex-col items-center text-[#e2e2e2] text-center text-sm"
+            key={step}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            {Steps[step]}
+          </motion.div>
+        </AnimatePresence>
+      </motion.div>
 
       {/* Cards */}
-      <div className="w-full flex justify-center items-center gap-2 my-6">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.25 }}
+        className="w-full min-h-[112px] flex justify-center items-center gap-2 my-6"
+      >
         {cards.map((card) => (
           <Card
             key={card._id}
@@ -137,10 +134,15 @@ const Tutorial = () => {
             onClick={(clickEvent) => handleCardClick(clickEvent, card)}
           />
         ))}
-      </div>
+      </motion.div>
 
       {/* Action buttons */}
-      <div className="flex flex-col gap-2">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.5 }}
+        className="flex flex-col gap-2"
+      >
         {step < 4 && (
           <>
             <button
@@ -167,9 +169,11 @@ const Tutorial = () => {
             FINISH TUTORIAL
           </button>
         )}
-      </div>
+      </motion.div>
     </motion.div>
   );
-};
+});
+
+Tutorial.displayName = "Tutorial";
 
 export default Tutorial;
