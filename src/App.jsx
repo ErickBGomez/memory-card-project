@@ -3,6 +3,7 @@ import Game from "./components/Game/Game";
 import MainMenu from "./components/MainMenu/MainMenu";
 import GameSettingsContext from "./contexts/GameSettingsContext";
 import Particles from "./components/Particles/Particles";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   const { difficulty, setDifficulty } = useContext(GameSettingsContext);
@@ -22,6 +23,7 @@ const App = () => {
           <MainMenu setDifficulty={setDifficulty} />
         )}
       </div>
+      <Footer />
     </div>
   );
 };
